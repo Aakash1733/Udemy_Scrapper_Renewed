@@ -14,8 +14,8 @@ import sys
 import datetime
 from pathlib import Path
 import chromedriver_binary
-#import chromedriver_autoinstaller
-#chromedriver_autoinstaller.install()
+import chromedriver_autoinstaller
+chromedriver_autoinstaller.install()
 warnings.filterwarnings('ignore')
 chrome_options = Options()
 chrome_options.add_experimental_option('detach', True)
@@ -102,7 +102,7 @@ def second_site(mydate=0,record_count=50,retry_limit=1):
 def check_course_on_udemy(url,mydate,record_count,retry_limit):
     data = []
     # Start a new browser session
-    driver3 = webdriver.Chrome(executable_path='chromedriver.exe',options=Options().add_experimental_option('excludeSwitches', ['enable-logging']))
+    driver3 = webdriver.Chrome(options=Options().add_experimental_option('excludeSwitches', ['enable-logging']))
     print("Starting Browser for Udemy Scanner")
     # Navigate to the webpage
     driver3.get(url)
@@ -181,9 +181,9 @@ def check_course_on_udemy(url,mydate,record_count,retry_limit):
 def third_site(mydate=0,record_count=50,retry_limit=1):
     print("The final output file can be downloaded using Download button Anytime")
     # Start a new browser session
-    driver5 = webdriver.Chrome(executable_path='chromedriver.exe',options=chrome_options)
+    driver5 = webdriver.Chrome(options=chrome_options)
     url="https://www.onlinecourses.ooo/"
-    driver4=webdriver.Chrome(executable_path='chromedriver.exe',options=chrome_options)
+    driver4=webdriver.Chrome(options=chrome_options)
     print("Starting the browser for main page")
     driver4.get(url)
     driver4.implicitly_wait(30)
@@ -234,9 +234,9 @@ def third_site(mydate=0,record_count=50,retry_limit=1):
 def first_site(mydate=0,record_count=50,retry_limit=1):
     print("The final output file can be downloaded using Download button ANYTIME")
     useless=["https://couponscorpion.com/category/100-off-coupons/","https://couponscorpion.com/category/free100-discount/"]
-    driver = webdriver.Chrome(executable_path='chromedriver.exe',options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     print("Starting browser")
-    driver2=webdriver.Chrome(executable_path='chromedriver.exe',options=chrome_options)
+    driver2=webdriver.Chrome(options=chrome_options)
     url = 'https://couponscorpion.com/category/100-off-coupons/'
     # Navigate to the webpage
     print("Searching the URL ",url)
