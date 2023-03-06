@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		// Create a new EventSource object to receive data from the server
+		window.addEventListener('DOMContentLoaded', function() {
+				// add event listener to submit button
+				var source = new EventSource("/data");
+				document.querySelector('form').addEventListener('Submit', source.onmessage = function(event) {
+		  var output = document.getElementById("output");
+		  if (event.data !== "") 
+		  {output.value += event.data + "\n" ;}
+		  else{
+		  output.value += event.data ;}
+		});
+			});
+	  </script>
+	  
+	<title>Udemy WebScraper</title>
+	<style>body {
+		font-family: Arial, sans-serif;
+		background-color: #3fa3bc;
+		padding: 20px;
+		color: #2c3e50;
+		line-height: 1.5;
+		margin: 0;
+	  }
+	  
+	  h1 {
+		text-align: center;
+		margin-bottom: 40px;
+		font-weight: bold;
+		font-size: 48px;
+		color: #3498db;
+		text-shadow: 2px 2px 2px #bdc3c7;
+	  }
+	  
+	  h2 {
+		margin: 0;
+		margin-bottom: 10px;
+		font-weight: normal;
+		font-size: 24px;
+		color: #2980b9;
+	  }
+	  
+	  label {
+		display: block;
+		margin-bottom: 10px;
+		font-size: 18px;
+		color: #2c3e50;
+		font-weight: bold;
+	  }
+	  
+	  input[type="checkbox"] {
+		/* Hide the default checkbox */
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		/* Set the size of the checkbox */
+		width: 16px;
+		height: 16px;
+		/* Add a border and border radius */
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		/* Add some padding for spacing */
+		padding: 3px;
+		/* Add a background color */
+		background-color: #fff;
+		/* Add a transition for smooth animation */
+		transition: all 0.3s ease;
+	  }
+	  
+	  input[type="checkbox"]:checked {
+		/* Change the background color */
+		background-color: #2980b9;
+	  }
+	  
+	  input[type="checkbox"]::before {
+		/* Add the tick mark */
+		content: '\2714';
+		/* Set the color to white */
+		color: #fff;
+		/* Position the tick mark in the center of the checkbox */
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		/* Hide the tick mark by default */
+		opacity: 0;
+		/* Add a transition for smooth animation */
+		transition: all 0.3s ease;
+	  }
+	  
+	  input[type="checkbox"]:checked::before {
+		/* Show the tick mark */
+		opacity: 1;
+	  }
+	  
+	  input[type="number"] {
+		width: 80px;
+		padding: 10px;
+		border-bottom: 2px solid #2980b9;
+		margin-bottom: 20px;
+		box-sizing: border-box;
+		font-size: 18px;
+		color: #2c3e50;
+		background-color: transparent;
+		outline: none;
+		text-align: center;
+	  }
+	  input[type="text"] {
+		width: 160px;
+		padding: 10px;
+		border-bottom: 2px solid #2980b9;
+		margin-bottom: 20px;
+		box-sizing: border-box;
+		font-size: 18px;
+		color: #2c3e50;
+		background-color: transparent;
+		outline: none;
+		text-align: center;
+		}
+
+	  textarea {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		color: white;
+		background-color: black;
+		border: none;
+		padding: 10px;
+		width: 95%;
+		height: 200px;
+		resize: none;
+		outline: none;
+		
+	  }
+	  
+	  button {
+		display: inline-block;
+		margin-top: 20px;
+		margin-right: 10px;
+		padding: 10px;
+		background-color: #3498db;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	  }
+	    
+	  
+		.download-button {
+			display: inline-block;
+			padding: 10px;
+			background-color: #ffffff;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+		.float-right {
+			float: right;
+		}
+		.enter-here {
+			display: inline-block;
+			margin-left: 10px;
+			color: #4b19be;
+			font-size: 20px;
+		}
+        
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Udemy WebScraper</h1>
+		<h2>Select the websites to search coupons</h2>
+        <form method="POST" action="/submit">
+		<label>
+			<input type="checkbox" name="option" value="1"> Couponsscorpion.com
+		</label>
+		<label>
+			<input type="checkbox" name="option" value="2"> Real.discount
+		</label>
+		<label>
+			<input type="checkbox" name="option" value="3"> Onlinecourses.ooo
+		</label>
+		<label>
+			<input type="number" name="record" placeholder=""><span class="enter-here">Number of Coupons to Extract</span>
+		</label>
+		<label>
+			<input type="text" name="old" placeholder="MM/YYYY"><span class="enter-here">Exclude Older Courses</span>
+		</label>
+		<label>
+			<input type="number" name="retry" placeholder=""><span class="enter-here">Retry Limit</span>
+		</label>
+        <label>
+			Log of background processes:
+			<textarea id="output"></textarea>
+		</label>
+		<button value="Submit" type="Submit">Submit</button>
+		<!-- in home.html template -->
+        
+
+		<button class="download-button float-right" type="aak" value="aak"><a href="{{ url_for('download') }}">Download CSV</a></button>
+        </form>
+	</div>
+</body>
+</html>
